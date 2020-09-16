@@ -12,6 +12,7 @@ namespace Bored
             InitializeComponent();
 
             DependencyService.Register<IApiService, ApiService>();
+            //DependencyService.Register<IApiService, ApiServiceMock>();
 
             MainPage = new MainPage();
         }

@@ -24,6 +24,26 @@ namespace Bored.Services
         public string key { get; set; }
     }
 
+    public class ApiServiceMock : IApiService
+    {
+
+        public async Task<Activity> GetRandom()
+        {
+            await Task.Run(() => { });
+
+
+            return new Activity() {
+                activity = "Go fish! " + DateTime.Now.ToString(),
+                price = 0,
+                key = "123",
+                type = "",
+                link = "http://missmss.se"
+            };
+
+        }
+
+    }
+
     public class ApiService : IApiService
     {
 
