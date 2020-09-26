@@ -10,18 +10,32 @@ namespace Bored.ViewModels
 {
 
 
-	//Canonical base view model
-	public class BaseViewModel : INotifyPropertyChanged
-	{
-		protected IApiService ApiService => DependencyService.Get<IApiService>();
-		protected INavigationService NavigationService => DependencyService.Get<INavigationService>();
+    //Canonical base view model
+    public class BaseViewModel : INotifyPropertyChanged
+    {
+        public IApiService ApiService { get; set; }
+        public INavigationService NavigationService { get; set; }
 
-		public event PropertyChangedEventHandler PropertyChanged;
+        public BaseViewModel()
+        {
+            try
+            {
+                ApiService = DependencyService.Get<IApiService>();
+                NavigationService = DependencyService.Get<INavigationService>();
+            }
+            catch
+            {
 
-		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-		{
+            }
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-	}
+    }
 }
 

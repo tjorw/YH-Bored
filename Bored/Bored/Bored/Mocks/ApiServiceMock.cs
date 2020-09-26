@@ -17,7 +17,7 @@ namespace Bored.Mocks
                 price = 0,
                 key = "123",
                 type = "",
-                link = "http://missmss.se"
+                link = "http://missmess.se"
             };
 
         }
