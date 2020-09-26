@@ -11,10 +11,10 @@ namespace Bored
         {
             InitializeComponent();
 
+            DependencyService.Register<INavigationService, NavigationService>();
             DependencyService.Register<IApiService, ApiService>();
-            //DependencyService.Register<IApiService, ApiServiceMock>();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

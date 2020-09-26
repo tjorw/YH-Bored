@@ -1,4 +1,5 @@
 ﻿using Bored.Services;
+using Bored.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,34 +12,27 @@ namespace Bored
 {
     public partial class MainPage : ContentPage
     {
-        IApiService apiService;
+        MainPageViewModel viewModel;
 
         public MainPage()
         {
             InitializeComponent();
-            apiService = DependencyService.Get<IApiService>();
+            BindingContext = viewModel = new MainPageViewModel();
         }
 
+        /*
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-            await load();
+            await viewModel.Load();
         }
+        */
 
-        private async Task load()
+        protected override void OnAppearing()
         {
-            var activity = await apiService.GetRandom();
-
-            ActivityLabel.Text = activity.activity;
-            ParticipantsLabel.Text = activity.participants.ToString();
-            PriceLabel.Text = activity.price.ToString();
-
+            base.OnAppearing();
+            viewModel.LoadCommand.Execute(null);
         }
-
-        private async void NewButton_Clicked(object sender, EventArgs e)
-        {
-            await load();
-        }
+        
     }
 }

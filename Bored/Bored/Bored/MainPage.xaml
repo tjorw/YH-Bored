@@ -3,6 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Bored.MainPage">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Text="About" Command="{Binding GoToAboutCommand}" />
+    </ContentPage.ToolbarItems>
+
     <StackLayout>
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
             <StackLayout>
@@ -10,12 +14,12 @@
                 <Label Text="Here is a suggestion of something to do if you are bored." HorizontalTextAlignment="Center" TextColor="White" FontSize="22"/>
             </StackLayout>
         </Frame>
-        <Label x:Name="ActivityLabel" FontSize="Title" Padding="30,10,30,10"/>
+        <Label FontSize="Title" Text="{Binding Activity}" Padding="30,10,30,10"/>
         <Label FontSize="Subtitle" Text="Participants" Padding="30,10,30,0"/>
-        <Label x:Name="ParticipantsLabel" FontSize="Title" Padding="30,0,30,0"/>
+        <Label FontSize="Title" Text="{Binding Participants}" Padding="30,0,30,0"/>
         <Label FontSize="Subtitle" Text="Price" Padding="30,10,30,0"/>
-        <Label x:Name="PriceLabel" FontSize="Title" Padding="30,0,30,0"/>
-        <Button x:Name="NewButton"  Padding="30,10,30,10" Text="NEW" Clicked="NewButton_Clicked" />
+        <Label FontSize="Title" Text="{Binding Price}" Padding="30,0,30,0"/>
+        <Button Padding="30,10,30,10" Text="NEW" Command="{Binding LoadCommand}"/>
     </StackLayout>
 
 </ContentPage>

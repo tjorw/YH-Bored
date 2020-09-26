@@ -6,5 +6,4 @@ namespace Bored.Services
     {
         Task<Activity> GetRandom();
     }
-
 }
