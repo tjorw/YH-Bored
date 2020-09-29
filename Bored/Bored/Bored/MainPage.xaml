@@ -10,12 +10,19 @@
                 <Label Text="Here is a suggestion of something to do if you are bored." HorizontalTextAlignment="Center" TextColor="White" FontSize="22"/>
             </StackLayout>
         </Frame>
-        <Label x:Name="ActivityLabel" FontSize="Title" Padding="30,10,30,10"/>
-        <Label FontSize="Subtitle" Text="Participants" Padding="30,10,30,0"/>
-        <Label x:Name="ParticipantsLabel" FontSize="Title" Padding="30,0,30,0"/>
-        <Label FontSize="Subtitle" Text="Price" Padding="30,10,30,0"/>
-        <Label x:Name="PriceLabel" FontSize="Title" Padding="30,0,30,0"/>
-        <Button x:Name="NewButton"  Padding="30,10,30,10" Text="NEW" Clicked="NewButton_Clicked" />
+        <Frame x:Name="DetailsFrame" IsVisible="false">
+            <StackLayout>
+                <Label FontSize="Title" Padding="30,10,30,10" Text="{Binding activity}"/>
+                <Label FontSize="Subtitle" Text="Participants" Padding="30,10,30,0"/>
+                <Label x:Name="ParticipantsLabel" FontSize="Title" Padding="30,0,30,0" Text="{Binding participants}"/>
+                <Label FontSize="Subtitle" Text="Price" Padding="30,10,30,0"/>
+                <Label x:Name="PriceLabel" FontSize="Title" Padding="30,0,30,0"  Text="{Binding price}"/>
+                <Button x:Name="NewButton"  Padding="30,10,30,10" Text="NEW" Clicked="NewButton_Clicked" />
+            </StackLayout>
+        </Frame>
+        <Frame x:Name="LoadingFrame">
+            <Label Text="LOADING..." FontSize="Title" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+        </Frame>
     </StackLayout>
 
 </ContentPage>

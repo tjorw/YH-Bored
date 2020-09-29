@@ -28,11 +28,21 @@ namespace Bored
 
         private async Task load()
         {
+            LoadingFrame.IsVisible = true;
+            DetailsFrame.IsVisible = false;
+
+            BindingContext = await apiService.GetRandom();
+
+            LoadingFrame.IsVisible = false;
+            DetailsFrame.IsVisible = true;
+
+            /*
             var activity = await apiService.GetRandom();
 
             ActivityLabel.Text = activity.activity;
             ParticipantsLabel.Text = activity.participants.ToString();
             PriceLabel.Text = activity.price.ToString();
+            */
 
         }
 
