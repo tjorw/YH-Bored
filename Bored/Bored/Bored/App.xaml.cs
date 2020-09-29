@@ -1,4 +1,5 @@
-﻿using Bored.Services;
+﻿using Bored.Mocks;
+using Bored.Services;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,7 +19,7 @@ namespace Bored
         private void RegisterServices()
         {
             DependencyService.Register<INavigationService, NavigationService>();
-            DependencyService.Register<IApiService, ApiService>();
+            DependencyService.Register<IApiService, ApiServiceSlowMock>();
         }
 
         protected override void OnStart()

@@ -9,6 +9,7 @@ namespace Bored.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
+        private bool isBusy;
         private string activity;
         private int participants;
         private decimal price;
@@ -17,17 +18,43 @@ namespace Bored.ViewModels
 
         public MainPageViewModel()
         {
-            LoadCommand = new Command(async () => await Load());
-            GoToAboutCommand = new Command(async () => await NavigationService.GoToAbout());
+            LoadCommand = new Command(async () => await Load(), () => !IsBusy);
+            GoToAboutCommand = new Command(async () => await NavigationService.GoToAbout(), () => !IsBusy);
+        }
+
+        public bool IsBusy
+        {
+            get => isBusy;
+            set
+            {
+                if (isBusy != value)
+                {
+                    isBusy = value;
+                    OnPropertyChanged();
+                    ((Command)LoadCommand).ChangeCanExecute();
+                    ((Command)GoToAboutCommand).ChangeCanExecute();
+                }
+            }
         }
 
         public async Task Load()
         {
-            var activity = await ApiService.GetRandom();
-            Activity = activity.activity;
-            Participants = activity.participants;
-            Price = activity.price;
+            
+            try
+            {
+                IsBusy = true;
+                var activity = await ApiService.GetRandom();
+                Activity = activity.activity;
+                Participants = activity.participants;
+                Price = activity.price;
+            } 
+            catch { }
+            finally
+            {
+                IsBusy = false;
+            }
 
+            
         }
 
 

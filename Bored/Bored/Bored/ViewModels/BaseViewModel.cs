@@ -13,8 +13,12 @@ namespace Bored.ViewModels
     //Canonical base view model
     public class BaseViewModel : INotifyPropertyChanged
     {
+
+
         public IApiService ApiService { get; set; }
         public INavigationService NavigationService { get; set; }
+
+
 
         public BaseViewModel()
         {

@@ -18,21 +18,25 @@ namespace Bored
         {
             InitializeComponent();
             BindingContext = viewModel = new MainPageViewModel();
+            viewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
-        /*
+        private void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName=="IsBusy")
+            {
+                this.IsBusy = viewModel.IsBusy;
+            }
+        }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             await viewModel.Load();
+            
         }
-        */
+      
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            viewModel.LoadCommand.Execute(null);
-        }
         
     }
 }
