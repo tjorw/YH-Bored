@@ -51,14 +51,6 @@ namespace Bored
             LoadingFrame.IsVisible = false;
             DetailsFrame.IsVisible = true;
 
-            /*
-            var activity = await apiService.GetRandom();
-
-            ActivityLabel.Text = activity.activity;
-            ParticipantsLabel.Text = activity.participants.ToString();
-            PriceLabel.Text = activity.price.ToString();
-            */
-
         }
 
         private async void NewButton_Clicked(object sender, EventArgs e)
