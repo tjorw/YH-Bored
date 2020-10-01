@@ -17,8 +17,11 @@
                 <Label FontSize="Subtitle" Text="Participants" Padding="30,10,30,0"/>
                 <Label x:Name="ParticipantsLabel" FontSize="Title" Padding="30,0,30,0" Text="{Binding participants, Converter={converters:IntToSingularAndPlural}}"/>
                 <Label FontSize="Subtitle" Text="Price" Padding="30,10,30,0"/>
-                <Label x:Name="PriceLabel" FontSize="Title" Padding="30,0,30,0"  Text="{Binding price}"/>
+                <Label x:Name="PriceLabel" FontSize="Title" Padding="30,0,30,0"  Text="{Binding price, StringFormat='The price is {0:C}'}"/>
                 <Button x:Name="NewButton"  Padding="30,10,30,10" Text="NEW" Clicked="NewButton_Clicked" />
+
+                <Entry x:Name="Entry1" Text="{Binding Name, Mode=TwoWay}"></Entry>
+                <Entry x:Name="Entry2" Text="{Binding Name, Mode=TwoWay}"></Entry>
             </StackLayout>
         </Frame>
         <Frame x:Name="LoadingFrame">

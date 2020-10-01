@@ -12,14 +12,29 @@ namespace Bored
     public partial class MainPage : ContentPage
     {
         IApiService apiService;
+        ObservableClass SomethingObservable;
 
         public MainPage()
         {
             InitializeComponent();
             apiService = DependencyService.Get<IApiService>();
+            bindStuffWithCode();
         }
 
-        protected override async void OnAppearing()
+        private void bindStuffWithCode()
+        {
+            SomethingObservable = new ObservableClass();
+            SomethingObservable.Name = "Test";
+            
+            Entry1.SetBinding(Entry.TextProperty, "Name");
+            Entry1.BindingContext = SomethingObservable;
+
+            Entry2.SetBinding(Entry.TextProperty, "Name");
+            Entry2.BindingContext = SomethingObservable;
+
+        }
+
+    protected override async void OnAppearing()
         {
             base.OnAppearing();
 
@@ -51,5 +66,28 @@ namespace Bored
             await load();
         }
 
+    }
+
+    public class ObservableClass : INotifyPropertyChanged
+    {
+        string name;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string Name
+        {
+            set
+            {
+                if (name != value)
+                {
+                    name = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+                }
+            }
+            get
+            {
+                return name;
+            }
+        }
     }
 }
