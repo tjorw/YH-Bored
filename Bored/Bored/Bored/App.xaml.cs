@@ -14,7 +14,7 @@ namespace Bored
 
             registerServices();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         private static void registerServices()
