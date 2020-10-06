@@ -46,6 +46,56 @@ namespace Bored.ViewModels.Tests
             Assert.AreEqual((sut.NavigationService as NavigationServiceMock).GoToAboutCallCount, 1);
         }
 
+        [TestMethod()]
+        public async Task Load_Should_Add_New_To_History()
+        {
+            //Arrange
+            var sut = sutFactory();
+
+            //Act
+            await sut.Load();
+
+            //Assert
+            Assert.AreEqual(sut.History.Count, 1);
+        }
+
+        [TestMethod()]
+        public async Task Load_Should_Add_Not_Add_The_Same_To_History_Twice()
+        {
+            //Arrange
+            var sut = sutFactory();
+
+            //Act
+            await sut.Load();
+            await sut.Load();
+
+            //Assert
+            Assert.AreEqual(sut.History.Count, 1);
+        }
+
+        [TestMethod()]
+        public async Task Load_Should_Add_Not_Different_To_History()
+        {
+            //Arrange
+            var sut = sutFactoryUnique();
+
+            //Act
+            await sut.Load();
+            await sut.Load();
+
+            //Assert
+            Assert.AreEqual(sut.History.Count, 2);
+        }
+
+        private MainPageViewModel sutFactoryUnique()
+        {
+            var sut = new MainPageViewModel();
+            sut.ApiService = new ApiServiceUniqueMock();
+            sut.NavigationService = new NavigationServiceMock();
+
+            return sut;
+        }
+
         private MainPageViewModel sutFactory()
         {
             var sut = new MainPageViewModel();

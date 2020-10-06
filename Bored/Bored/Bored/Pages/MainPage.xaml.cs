@@ -32,11 +32,25 @@ namespace Bored
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await viewModel.Load();
+
+            if(viewModel.History.Count == 0)
+            {
+                await viewModel.Load();
+            }
+
             
         }
-      
 
-        
+        private void HistoryView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var activity = e.Item as Activity;
+            var listView = sender as ListView;
+
+            if(activity != null)
+            {
+                viewModel.SelectFromHistoryCommand.Execute(activity);
+                listView.SelectedItem = null;
+            }
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace Bored
         private void RegisterServices()
         {
             DependencyService.Register<INavigationService, NavigationService>();
-            DependencyService.Register<IApiService, ApiServiceSlowMock>();
+            DependencyService.Register<IApiService, ApiService>();
         }
 
         protected override void OnStart()

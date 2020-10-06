@@ -7,7 +7,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem  Text="About" Command="{Binding GoToAboutCommand}" />
     </ContentPage.ToolbarItems>
-
+    
     <StackLayout>
         
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
@@ -17,21 +17,52 @@
             </StackLayout>
         </Frame>
 
-        <Frame x:Name="DetailsFrame" IsVisible="{Binding IsBusy, Converter={converters:BooleanInverseConverter}}">
-            <StackLayout Spacing="10">
-                <Label FontSize="Title" Text="{Binding Activity}"/>
-                <Label FontSize="Subtitle" Text="Participants"/>
-                <Label FontSize="Title" Text="{Binding Participants}"/>
-                <Label FontSize="Subtitle" Text="Price"/>
-                <Label FontSize="Title" Text="{Binding Price}"/>
-            </StackLayout>
-        </Frame>
 
-        <Frame x:Name="LoadingFrame" IsVisible="{Binding IsBusy}">
-            <Label Text="LOADING..." FontSize="Title" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
-        </Frame>
+        <RefreshView Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy}">
+            
+            <ScrollView>
+                <StackLayout>
+                    <ContentView  IsVisible="{Binding IsBusy}">
+                        <ActivityIndicator IsRunning="{Binding IsBusy}"></ActivityIndicator>
+                    </ContentView>
+                    <Frame x:Name="DetailsFrame" IsVisible="{Binding IsBusy, Converter={converters:BooleanInverseConverter}}">
+                        <StackLayout Spacing="10">
+                            <Label FontSize="Title" Text="{Binding Activity}"/>
+                            <Label FontSize="Subtitle" Text="Participants"/>
+                            <Label FontSize="Title" Text="{Binding Participants}"/>
+                            <Label FontSize="Subtitle" Text="Price"/>
+                            <Label FontSize="Title" Text="{Binding Price}"/>
 
-        <Button Text="NEW" Command="{Binding LoadCommand}"/>
+                            <ListView 
+                                x:Name="HistoryView" 
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="FillAndExpand"  
+                                ItemsSource="{Binding History}" 
+                                ItemTapped="HistoryView_ItemTapped" 
+                                BackgroundColor="Aqua">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Label Text="{Binding activity}"></Label>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                        </StackLayout>
+
+                    </Frame>
+
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+
+
+        <StackLayout Orientation="Horizontal">
+            <Button Text="NEW" Command="{Binding LoadCommand}"/>
+            <Button Text="CLEAR" Command="{Binding ClearCommand}"/>
+        </StackLayout>
+        
     </StackLayout>
 
 </ContentPage>

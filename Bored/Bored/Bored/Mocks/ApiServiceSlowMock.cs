@@ -12,13 +12,15 @@ namespace Bored.Mocks
         {
             await Task.Run(() => { Thread.Sleep(5000); });
 
+            var key = Guid.NewGuid().ToString();
+
 
             return new Activity()
             {
-                activity = "Go fish! " + DateTime.Now.ToString(),
+                activity = key,
                 price = 1,
                 participants = 1,
-                key = "123",
+                key = key,
                 type = "",
                 link = "http://missmess.se"
             };
