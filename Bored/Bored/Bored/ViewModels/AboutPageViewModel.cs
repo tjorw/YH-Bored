@@ -5,11 +5,11 @@ namespace Bored.ViewModels
 {
     public class AboutPageViewModel : BaseViewModel
     {
-        private string about;
+        private string about = string.Empty;
 
-        public AboutPageViewModel()
+        public AboutPageViewModel(string about)
         {
-            About = "BLA BLA BLA..";
+            this.about = about;
         }
 
         public string About
@@ -20,6 +20,7 @@ namespace Bored.ViewModels
                 if (about != value)
                 {
                     about = value;
+                    MessagingCenter.Send(this, Messages.AboutChanged, about);
                     OnPropertyChanged();
                 }
             }

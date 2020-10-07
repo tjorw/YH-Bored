@@ -12,8 +12,8 @@
         
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
             <StackLayout>
-                <Label Text="Welcome to Bored!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                <Label Text="Here is a suggestion of something to do if you are bored." HorizontalTextAlignment="Center" TextColor="White" FontSize="22"/>
+                <Label Text="{Binding Welcome}" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                <Label Text="{Binding About}" HorizontalTextAlignment="Center" TextColor="White" FontSize="22"/>
             </StackLayout>
         </Frame>
 
@@ -28,18 +28,12 @@
                     <Frame x:Name="DetailsFrame" IsVisible="{Binding IsBusy, Converter={converters:BooleanInverseConverter}}">
                         <StackLayout Spacing="10">
                             <Label FontSize="Title" Text="{Binding Activity}"/>
-                            <Label FontSize="Subtitle" Text="Participants"/>
-                            <Label FontSize="Title" Text="{Binding Participants}"/>
-                            <Label FontSize="Subtitle" Text="Price"/>
-                            <Label FontSize="Title" Text="{Binding Price}"/>
-
                             <ListView 
                                 x:Name="HistoryView" 
                                 HorizontalOptions="FillAndExpand" 
-                                VerticalOptions="FillAndExpand"  
                                 ItemsSource="{Binding History}" 
                                 ItemTapped="HistoryView_ItemTapped" 
-                                BackgroundColor="Aqua">
+                                >
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>

@@ -5,6 +5,6 @@ namespace Bored.Services
     public interface INavigationService
     {
         Task GoBack();
-        Task GoToAbout();
+        Task GoToAbout(string about);
     }
 }

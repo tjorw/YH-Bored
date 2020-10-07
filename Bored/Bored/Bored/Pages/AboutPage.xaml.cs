@@ -15,11 +15,11 @@ namespace Bored
     {
         AboutPageViewModel viewModel;
 
-        public AboutPage()
+        public AboutPage(string about)
         {
 
             InitializeComponent();
-            BindingContext = viewModel = new AboutPageViewModel();
+            BindingContext = viewModel = new AboutPageViewModel(about);
         }
     }
 }

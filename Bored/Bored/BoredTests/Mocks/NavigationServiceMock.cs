@@ -17,7 +17,7 @@ namespace BoredTests.Mocks
             GoBackCallCount++;
         }
 
-        public async Task GoToAbout()
+        public async Task GoToAbout(string about)
         {
             await Task.Run(() => { });
             GoToAboutCallCount++;

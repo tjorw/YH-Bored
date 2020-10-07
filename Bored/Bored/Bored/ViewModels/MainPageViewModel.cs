@@ -12,24 +12,27 @@ namespace Bored.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        private bool isBusy;
-        private string activity;
-        private int participants;
-        private decimal price;
+        private bool isBusy = false;
+        private string welcome = "Welcome to BORED!";
+        private string about = "Things to do if you are bored.";
+        private string activity = string.Empty;
+        private ObservableCollection<Activity> history = new ObservableCollection<Activity>();
+
         public ICommand SelectFromHistoryCommand { get; }
         public ICommand LoadCommand { get; }
         public ICommand ClearCommand { get; }
         public ICommand GoToAboutCommand { get; }
 
-        private ObservableCollection<Activity> history = new ObservableCollection<Activity>();
-
         public MainPageViewModel()
         {
             LoadCommand = new Command(async () => await Load(), () => !IsBusy);
-            GoToAboutCommand = new Command(async () => await NavigationService.GoToAbout(), () => !IsBusy);
+            GoToAboutCommand = new Command(async () => await NavigationService.GoToAbout(about), () => !IsBusy);
             SelectFromHistoryCommand = new Command<Activity>((activity) => Select(activity), (activity) => history.Count() > 0);
             ClearCommand = new Command(() => Clear(), () => !IsBusy && history.Count() > 0);
+
+            MessagingCenter.Subscribe<AboutPageViewModel, string>(this, Messages.AboutChanged, (sender, message) => this.About = message);
         }
+
 
         public ObservableCollection<Activity> History { get => history;}
 
@@ -58,8 +61,6 @@ namespace Bored.ViewModels
                 IsBusy = true;
                 var activity = await ApiService.GetRandom();
                 Activity = activity.activity;
-                Participants = activity.participants;
-                Price = activity.price;
 
                 if(!history.Any( a => a.key == activity.key ))
                 {
@@ -81,13 +82,12 @@ namespace Bored.ViewModels
         public void Select(Activity activity)
         {
             Activity = activity.activity;
-            Participants = activity.participants;
-            Price = activity.price;
         }
 
 
         public void Clear()
         {
+            Activity = string.Empty;
             history.Clear();
             ((Command)ClearCommand).ChangeCanExecute();
             ((Command)SelectFromHistoryCommand).ChangeCanExecute();
@@ -106,29 +106,31 @@ namespace Bored.ViewModels
             }
         }
 
-        public int Participants
+        public string About
         {
-            get => participants;
+            get => about;
             set
             {
-                if (participants != value)
+                if (about != value)
                 {
-                    participants = value;
+                    about = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        public decimal Price { 
-            get => price;
+        public string Welcome
+        {
+            get => welcome;
             set
             {
-                if (price != value)
+                if (welcome != value)
                 {
-                    price = value;
+                    welcome = value;
                     OnPropertyChanged();
                 }
             }
         }
+
     }
 }

@@ -4,9 +4,9 @@
              x:Class="Bored.AboutPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding About}"
+            <Entry Text="{Binding About}"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="FillAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

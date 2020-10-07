@@ -12,9 +12,9 @@ namespace Bored.Services
             await MainPage.Navigation.PopAsync();
         }
 
-        public async Task GoToAbout()
+        public async Task GoToAbout(string about)
         {
-            await MainPage.Navigation.PushAsync(new AboutPage());
+            await MainPage.Navigation.PushAsync(new AboutPage(about));
         }
     }
 }
