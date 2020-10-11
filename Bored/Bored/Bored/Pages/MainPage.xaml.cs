@@ -18,15 +18,16 @@ namespace Bored
         {
             InitializeComponent();
             BindingContext = viewModel = new MainPageViewModel();
-            viewModel.PropertyChanged += ViewModel_PropertyChanged;
+            viewModel.SelectFromHistoryCommand.CanExecuteChanged += SelectFromHistoryCommand_CanExecuteChanged;
         }
 
-        private void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void SelectFromHistoryCommand_CanExecuteChanged(object sender, EventArgs e)
         {
-            if(e.PropertyName=="IsBusy")
-            {
-                this.IsBusy = viewModel.IsBusy;
-            }
+            Console.WriteLine("This is just catching the event when SelectFromHistoryCommand raises CanExecuteChanged");
+            Console.WriteLine("You could make stuff happen in the UI here.");
+            Console.WriteLine("Just for demo.");
+
+            HistoryView.BackgroundColor = viewModel.SelectFromHistoryCommand.CanExecute(null) ? Color.LightBlue : Color.LightGray;
         }
 
         protected override async void OnAppearing()
@@ -37,8 +38,6 @@ namespace Bored
             {
                 await viewModel.Load();
             }
-
-            
         }
 
         private void HistoryView_ItemTapped(object sender, ItemTappedEventArgs e)

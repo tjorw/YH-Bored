@@ -52,6 +52,45 @@ namespace Bored.ViewModels
                 }
             }
         }
+        public string Activity
+        {
+            get => activity;
+            set
+            {
+                if (activity != value)
+                {
+                    activity = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string About
+        {
+            get => about;
+            set
+            {
+                if (about != value)
+                {
+                    about = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string Welcome
+        {
+            get => welcome;
+            set
+            {
+                if (welcome != value)
+                {
+                    welcome = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
 
         public async Task Load()
         {
@@ -84,52 +123,12 @@ namespace Bored.ViewModels
             Activity = activity.activity;
         }
 
-
         public void Clear()
         {
             Activity = string.Empty;
             history.Clear();
             ((Command)ClearCommand).ChangeCanExecute();
             ((Command)SelectFromHistoryCommand).ChangeCanExecute();
-        }
-
-        public string Activity
-        {
-            get => activity;
-            set
-            {
-                if(activity != value)
-                {
-                    activity = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public string About
-        {
-            get => about;
-            set
-            {
-                if (about != value)
-                {
-                    about = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public string Welcome
-        {
-            get => welcome;
-            set
-            {
-                if (welcome != value)
-                {
-                    welcome = value;
-                    OnPropertyChanged();
-                }
-            }
         }
 
     }
