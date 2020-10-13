@@ -1,19 +1,19 @@
-﻿using Bored.Services;
+﻿using Bored.Services.Bored;
 using System;
 using System.Threading.Tasks;
 
-namespace Bored.Mocks
+namespace Bored.Mocks.Bored
 {
-    public class ApiServiceUniqueMock : IApiService
+    public class BoredApiServiceUniqueMock : IBoredApiService
     {
 
-        public async Task<Activity> GetRandom()
+        public async Task<BoredActivityDTO> GetRandom()
         {
             await Task.Run(() => { });
 
             var key = Guid.NewGuid().ToString();
 
-            return new Activity()
+            return new BoredActivityDTO()
             {
                 activity = key,
                 price = 0,

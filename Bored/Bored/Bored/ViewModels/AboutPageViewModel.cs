@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace Bored.ViewModels
 {
-    public class AboutPageViewModel : BaseViewModel
+    public class AboutPageViewModel : BasePageViewModel
     {
         private string about = string.Empty;
 

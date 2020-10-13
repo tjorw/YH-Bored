@@ -1,4 +1,5 @@
 ﻿using Bored.Services;
+using Bored.Services.Bored;
 using Bored.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace Bored
 
         private void HistoryView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var activity = e.Item as Activity;
+            var activity = e.Item as BoredActivityDTO;
             var listView = sender as ListView;
 
             if(activity != null)

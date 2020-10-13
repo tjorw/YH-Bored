@@ -4,16 +4,21 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bored.Services
+namespace Bored.Services.Bored
 {
 
-    public class ApiService : IApiService
+    public class BoredApiService : IBoredApiService
     {
 
-        public async Task<Activity> GetRandom()
+        public async Task<BoredActivityDTO> GetRandom()
         {
-            var data = await get("https://www.boredapi.com/api/activity/");
-            return JsonConvert.DeserializeObject<Activity>(data);
+            return await get<BoredActivityDTO>("https://www.boredapi.com/api/activity/");
+        }
+
+        private async Task<T> get<T>(string url)
+        {
+            var data = await get(url);
+            return JsonConvert.DeserializeObject<T>(data);
         }
 
         private async Task<string> get(string url)

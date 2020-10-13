@@ -1,7 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using Bored.Pages;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Bored.Services
+namespace Bored.Services.Navigation
 {
     public class NavigationService : INavigationService
     {
@@ -15,6 +16,11 @@ namespace Bored.Services
         public async Task GoToAbout(string about)
         {
             await MainPage.Navigation.PushAsync(new AboutPage(about));
+        }
+
+        public async Task GoToTimes()
+        {
+            await MainPage.Navigation.PushAsync(new TimesPage());
         }
     }
 }

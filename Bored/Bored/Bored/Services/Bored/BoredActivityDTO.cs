@@ -1,6 +1,6 @@
-﻿namespace Bored.Services
+﻿namespace Bored.Services.Bored
 {
-    public class Activity
+    public class BoredActivityDTO
     {
         public string activity { get; set; }
         public decimal accessibility { get; set; }

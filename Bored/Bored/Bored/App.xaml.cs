@@ -1,8 +1,8 @@
-﻿using Bored.Mocks;
-using Bored.Services;
-using System;
+﻿using Bored.Mocks.Times;
+using Bored.Services.Bored;
+using Bored.Services.Navigation;
+using Bored.Services.Times;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Bored
 {
@@ -19,7 +19,8 @@ namespace Bored
         private void RegisterServices()
         {
             DependencyService.Register<INavigationService, NavigationService>();
-            DependencyService.Register<IApiService, ApiService>();
+            DependencyService.Register<IBoredApiService, BoredApiService>();
+            DependencyService.Register<ITimesApiService, TimesApiServiceMock>();
         }
 
         protected override void OnStart()

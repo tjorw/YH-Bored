@@ -1,4 +1,7 @@
-﻿using Bored.Services;
+﻿
+using Bored.Services.Bored;
+using Bored.Services.Navigation;
+using Bored.Services.Times;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,23 +12,20 @@ using Xamarin.Forms;
 namespace Bored.ViewModels
 {
 
-
-    //Canonical base view model
-    public class BaseViewModel : INotifyPropertyChanged
+    public abstract class BasePageViewModel : INotifyPropertyChanged
     {
 
-
-        public IApiService ApiService { get; set; }
+        public IBoredApiService BoredApiService { get; set; }
         public INavigationService NavigationService { get; set; }
+        public ITimesApiService TimesApiService { get; set; }
 
-
-
-        public BaseViewModel()
+        public BasePageViewModel()
         {
             try
             {
-                ApiService = DependencyService.Get<IApiService>();
+                BoredApiService = DependencyService.Get<IBoredApiService>();
                 NavigationService = DependencyService.Get<INavigationService>();
+                TimesApiService = DependencyService.Get<ITimesApiService>();
             }
             catch
             {
@@ -33,13 +33,13 @@ namespace Bored.ViewModels
             }
         }
 
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }
 

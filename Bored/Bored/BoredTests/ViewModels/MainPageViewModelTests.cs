@@ -8,6 +8,7 @@ using BoredTests.Mocks;
 using System.Threading.Tasks;
 using System.Threading;
 using Nito.AsyncEx;
+using Bored.Mocks.Bored;
 
 namespace Bored.ViewModels.Tests
 {
@@ -90,7 +91,7 @@ namespace Bored.ViewModels.Tests
         private MainPageViewModel sutFactoryUnique()
         {
             var sut = new MainPageViewModel();
-            sut.ApiService = new ApiServiceUniqueMock();
+            sut.BoredApiService = new BoredApiServiceUniqueMock();
             sut.NavigationService = new NavigationServiceMock();
 
             return sut;
@@ -99,7 +100,7 @@ namespace Bored.ViewModels.Tests
         private MainPageViewModel sutFactory()
         {
             var sut = new MainPageViewModel();
-            sut.ApiService = new ApiServiceMock();
+            sut.BoredApiService = new BoredApiServiceMock();
             sut.NavigationService = new NavigationServiceMock();
 
             return sut;

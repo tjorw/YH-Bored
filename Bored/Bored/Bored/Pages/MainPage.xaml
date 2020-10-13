@@ -5,6 +5,7 @@
              x:Class="Bored.MainPage">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem  Text="Times" Command="{Binding GoToTimesCommand}" />
         <ToolbarItem  Text="About" Command="{Binding GoToAboutCommand}" />
     </ContentPage.ToolbarItems>
     
@@ -37,7 +38,7 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
-                                            <Label Text="{Binding activity}"></Label>
+                                            <Label Text="{Binding Activity}"></Label>
                                         </ViewCell>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
